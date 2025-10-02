@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // validate user details
     if (
         [username, email, password, fullName].some((field) => {
-            field?.trime() === ""
+            field?.trim() === ""
         })
     ) {
         throw new ApiError(400, "All fields are required")
@@ -34,7 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check if user already exist with the email or username
     const existedUser = await User.findOne({
-        $or: [username, email]
+        $or: [{ username }, { email }]
     })
     if (existedUser) {
         throw new ApiError(409, "username or email already exist")
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check coverImage in server
     let coverImageLocalPath;
-    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
+    if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
         coverImageLocalPath = req.files.coverImage[0].path
     }
 

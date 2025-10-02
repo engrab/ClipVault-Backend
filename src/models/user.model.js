@@ -16,7 +16,6 @@ const userSchema = new Schema(
             type: String,
             required: true,
             lowercase: true,
-            trim: true,
         },
 
         password: {
@@ -46,7 +45,6 @@ const userSchema = new Schema(
 
         refreshToken: {
             type: String,
-            required: true,
         },
 
     },

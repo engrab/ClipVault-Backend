@@ -1,1 +1,1 @@
-export const DB_NAME = "clipvalut"
+export const DB_NAME = "clipvault"
